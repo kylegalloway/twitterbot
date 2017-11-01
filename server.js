@@ -3,6 +3,7 @@
 var express = require('express');
 var generate = require('./lib/generate');
 var Twitter = require('twitter');
+var http = require('http');
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -23,6 +24,15 @@ function makeTweet() {
     });
 }
 
+function keepAlive() {
+    try {
+        http.get('http://foodtruckbot1.herokuapp.com/');
+        console.log('GET request sent; kept alive.');
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 app.get('/', function (req, res) {
     res.send('Congratulations, you sent a GET request!');
     console.log('Received a GET request and sent a response');
@@ -34,3 +44,5 @@ app.listen(port, function () {
 
 makeTweet();
 setInterval(makeTweet, tweetInterval);
+
+setInterval(keepAlive, 600000);
