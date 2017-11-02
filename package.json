@@ -20,5 +20,8 @@
     "express": "^4.16.2",
     "lodash": "^4.17.4",
     "twitter": "^1.7.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.7.4"
   }
 }
